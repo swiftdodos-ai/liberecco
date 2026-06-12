@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberecco — Propuesta de Servicios Digitales</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#1B3A6B;
+  --azul2:#24508F;
+  --azul3:#2E6BB0;
+  --teal:#1A7A8A;
+  --teal2:#219EAD;
+  --teal3:#E0F5F7;
+  --acento:#F0C040;
+  --acento2:#F7D96A;
+  --b:#FFFFFF;
+  --g1:#F4F7FB;
+  --g2:#E2EAF4;
+  --g3:#B8C9DE;
+  --g4:#7A90AA;
+  --t:#1B3A6B;
+  --t2:#3D5A7A;
+  --ok:#1A7A8A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--g1);color:var(--t);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+
+/* PRINT BAR */
+.print-bar{background:var(--azul);padding:11px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--teal2);}
+.print-bar span{color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.07em;text-transform:uppercase;}
+.btn-print{background:var(--teal);color:white;border:none;padding:8px 20px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;border-radius:2px;}
+.btn-print:hover{background:var(--teal2);}
+
+/* LAYOUT */
+.triptico{display:grid;grid-template-columns:290px 1fr 1fr;min-height:calc(100vh - 44px);}
+
+/* ══ COL IZQUIERDA ══ */
+.col-izq{background:var(--azul);display:flex;flex-direction:column;}
+.top-strip-izq{background:var(--teal);padding:10px 22px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:white;}
+.brand-area{padding:26px 22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand-name{font-family:'DM Serif Display',serif;font-size:32px;color:white;line-height:1;margin-bottom:4px;}
+.brand-sub{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;}
+.brand-loc{font-size:10px;color:rgba(255,255,255,.25);margin-top:5px;}
+
+.col-izq-inner{padding:20px;flex:1;display:flex;flex-direction:column;gap:16px;}
+
+.hl-big{font-family:'DM Serif Display',serif;font-size:24px;color:white;line-height:1.25;margin-bottom:8px;}
+.hl-big em{font-style:italic;color:var(--acento2);}
+.hl-p{font-size:12px;color:rgba(255,255,255,.5);line-height:1.7;}
+
+/* precio */
+.precio-box{background:rgba(255,255,255,.07);border-left:3px solid var(--teal2);padding:16px;}
+.precio-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal2);margin-bottom:6px;}
+.precio-num{font-family:'DM Serif Display',serif;font-size:36px;color:white;line-height:1;margin-bottom:3px;}
+.precio-usd{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:12px;}
+.iva-box{background:rgba(255,255,255,.07);border-left:2px solid rgba(255,255,255,.18);padding:9px 11px;margin-bottom:12px;font-size:11px;color:rgba(255,255,255,.6);line-height:1.6;}
+.iva-box strong{color:white;}
+.p-items{list-style:none;}
+.p-items li{font-size:11px;color:rgba(255,255,255,.5);padding:4px 0 4px 14px;position:relative;border-bottom:1px solid rgba(255,255,255,.05);}
+.p-items li:last-child{border-bottom:none;}
+.p-items li::before{content:'—';position:absolute;left:0;color:var(--teal2);}
+
+/* intercambio */
+.intercambio{background:white;padding:16px;border-radius:1px;}
+.intercambio-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--azul);margin-bottom:10px;padding-bottom:7px;border-bottom:2px solid var(--azul);}
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.split-item{padding:10px;border:1px solid var(--g2);}
+.split-item.sv{border-left:3px solid var(--teal);}
+.split-item.sn{border-left:3px solid var(--azul);}
+.split-val{font-family:'DM Serif Display',serif;font-size:15px;color:var(--azul);line-height:1.25;margin-bottom:4px;}
+.split-det{font-size:10px;color:var(--g4);line-height:1.5;}
+.intercambio-why{font-size:11.5px;color:var(--t2);line-height:1.65;}
+.intercambio-why strong{color:var(--azul);}
+
+/* semana 1 */
+.semana1{background:rgba(255,255,255,.06);padding:13px 16px;border-left:3px solid var(--acento);}
+.s1-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acento2);margin-bottom:6px;}
+.s1-txt{font-size:11.5px;color:rgba(255,255,255,.6);line-height:1.65;}
+
+/* post servicios */
+.post-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px;}
+.mant-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+.mant-row:last-child{border-bottom:none;}
+.mant-precio{font-family:'DM Serif Display',serif;font-size:16px;color:white;white-space:nowrap;flex-shrink:0;}
+.mant-desc{font-size:11px;color:rgba(255,255,255,.42);line-height:1.5;text-align:right;}
+.mant-nota{display:block;font-size:10px;color:var(--teal2);margin-top:2px;}
+
+/* fact */
+.fact-box{background:rgba(255,255,255,.05);border-left:2px solid rgba(255,255,255,.15);padding:12px 14px;}
+.fact-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:8px;}
+.f-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.f-row:last-child{border-bottom:none;}
+.f-concepto{font-size:11px;color:rgba(255,255,255,.45);}
+.f-total{font-size:13px;font-weight:700;color:white;}
+.f-sub{font-size:10px;color:rgba(255,255,255,.28);margin-top:7px;line-height:1.5;}
+
+/* ws */
+.ws-box{border:1px solid rgba(240,192,64,.4);padding:13px 14px;}
+.ws-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acento);margin-bottom:7px;}
+.ws-txt{font-size:11px;color:rgba(255,255,255,.6);line-height:1.7;}
+.ws-txt strong{color:white;}
+
+/* ══ COL CENTRAL ══ */
+.col-centro{background:var(--b);border-left:1px solid var(--g2);border-right:1px solid var(--g2);display:flex;flex-direction:column;}
+.top-strip{background:var(--azul);padding:10px 20px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.col-centro-inner{padding:18px;flex:1;}
+
+/* comparativas */
+.comp-card{border:1px solid var(--g2);margin-bottom:14px;overflow:hidden;}
+.comp-header{background:var(--azul);padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:white;}
+.comp-header.ct{background:var(--teal);}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;}
+.comp-col{padding:13px;border-right:1px solid var(--g2);}
+.comp-col:last-child{border-right:none;background:var(--teal3);}
+.comp-flag{font-size:10px;color:var(--g4);margin-bottom:3px;}
+.comp-brand{font-size:13px;font-weight:700;color:var(--azul);margin-bottom:7px;}
+.comp-precio{font-family:'DM Serif Display',serif;font-size:19px;line-height:1;margin-bottom:3px;}
+.comp-precio.ellos{color:#8B2020;}
+.comp-precio.yo{color:var(--teal);}
+.comp-sub{font-size:10px;color:var(--g4);margin-bottom:8px;}
+.comp-det{font-size:11px;color:var(--t2);line-height:1.5;padding-top:7px;border-top:1px solid var(--g2);}
+.comp-plus-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-top:8px;margin-bottom:5px;}
+.comp-plus{list-style:none;}
+.comp-plus li{font-size:11px;color:var(--teal);padding:3px 0 3px 13px;position:relative;line-height:1.4;}
+.comp-plus li::before{content:'✓';position:absolute;left:0;font-size:10px;}
+
+/* timeline */
+.tl-section{border:1px solid var(--g2);overflow:hidden;}
+.tl-header{background:var(--g1);padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--azul);border-bottom:1px solid var(--g2);}
+.tl-row{display:flex;align-items:stretch;border-bottom:1px solid var(--g2);}
+.tl-row:last-child{border-bottom:none;}
+.tl-tag{font-size:10px;font-weight:700;color:white;background:var(--azul2);padding:12px 8px;min-width:56px;text-align:center;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tl-tag.t{background:var(--teal);}
+.tl-accion{font-size:12px;color:var(--t);line-height:1.4;padding:11px 13px;flex:1;}
+.tl-accion span{display:block;font-size:10px;color:var(--g4);margin-top:3px;}
+
+/* video */
+.video-section{margin-top:14px;border:1px solid var(--g2);overflow:hidden;}
+.video-header{background:var(--azul);padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:white;}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+
+/* ══ COL DERECHA ══ */
+.col-der{background:var(--g1);display:flex;flex-direction:column;}
+.col-der-inner{padding:18px;flex:1;display:flex;flex-direction:column;gap:16px;}
+
+/* BLOQUE genérico */
+.bloque{background:white;border:1px solid var(--g2);overflow:hidden;}
+.bh{padding:11px 15px;}
+.bh.azul{background:var(--azul);}
+.bh.teal{background:var(--teal);}
+.bh.acento{background:var(--acento);border-bottom:2px solid var(--azul);}
+.bh.gris{background:var(--g1);border-bottom:1px solid var(--g2);}
+.bh-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px;}
+.bh.azul .bh-eyebrow,.bh.teal .bh-eyebrow{color:rgba(255,255,255,.42);}
+.bh.acento .bh-eyebrow{color:rgba(27,58,107,.6);}
+.bh.gris .bh-eyebrow{color:var(--g4);}
+.bh-titulo{font-size:13px;font-weight:700;line-height:1.3;}
+.bh.azul .bh-titulo,.bh.teal .bh-titulo{color:white;}
+.bh.acento .bh-titulo{color:var(--azul);}
+.bh.gris .bh-titulo{color:var(--azul);}
+.bb{padding:14px 15px;}
+
+/* ── BLOQUE 1: PAINKILLERS ── */
+.pk-item{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--g2);align-items:flex-start;}
+.pk-item:last-child{border-bottom:none;}
+.pk-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.pk-txt strong{display:block;font-size:12px;font-weight:700;color:var(--azul);margin-bottom:2px;}
+.pk-txt span{font-size:11px;color:var(--t2);line-height:1.55;}
+
+/* ── BLOQUE 2: DIAGNÓSTICO SEO ── */
+.diag-intro{background:var(--g1);border-left:3px solid var(--azul);padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--t2);line-height:1.65;}
+.diag-intro strong{color:var(--azul);}
+.diag-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--g2);align-items:flex-start;}
+.diag-item:last-child{border-bottom:none;}
+.diag-num{font-family:'DM Serif Display',serif;font-size:18px;color:var(--g3);flex-shrink:0;width:22px;text-align:center;margin-top:0px;}
+.diag-txt strong{display:block;font-size:12px;font-weight:700;color:var(--azul);margin-bottom:2px;}
+.diag-txt span{font-size:11px;color:var(--t2);line-height:1.55;}
+
+/* estrategia dentro de diagnóstico */
+.estrategia-box{background:var(--azul);padding:12px 14px;margin-top:12px;}
+.estrategia-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:8px;}
+.e-row{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+.e-row:last-child{border-bottom:none;}
+.e-tag{font-size:10px;font-weight:700;color:white;background:rgba(255,255,255,.12);padding:3px 7px;white-space:nowrap;flex-shrink:0;min-width:58px;text-align:center;border-radius:1px;}
+.e-tag.t{background:var(--teal);}
+.e-txt{font-size:11px;color:rgba(255,255,255,.72);line-height:1.5;}
+
+/* ── BLOQUE 3: CUESTIONARIO ── */
+.q-seccion{margin-bottom:14px;}
+.q-seccion-titulo{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding:7px 10px;background:var(--teal3);border-left:3px solid var(--teal);margin-bottom:10px;}
+.q-stack{display:flex;flex-direction:column;gap:9px;}
+.q-grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.q-field{display:flex;flex-direction:column;gap:3px;}
+.q-label{font-size:12px;font-weight:600;color:var(--azul);line-height:1.4;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;background:var(--azul);color:white;font-size:9px;font-weight:700;margin-right:5px;flex-shrink:0;vertical-align:middle;border-radius:1px;}
+.q-num.t{background:var(--teal);}
+.nota{display:block;font-size:10px;color:var(--g4);font-style:italic;margin-top:1px;}
+.q-input{font-family:'DM Sans',sans-serif;font-size:12.5px;color:var(--t);background:white;border:1px solid var(--g3);padding:7px 9px;outline:none;width:100%;transition:border-color .15s;border-radius:1px;}
+.q-input:focus{border-color:var(--azul2);}
+.q-textarea{resize:vertical;min-height:55px;}
+.q-radios{display:flex;gap:12px;flex-wrap:wrap;margin-top:3px;}
+.q-radio{display:flex;align-items:center;gap:4px;font-size:11.5px;color:var(--t2);cursor:pointer;}
+.q-radio input{cursor:pointer;accent-color:var(--azul);}
+.q-submit{display:block;width:100%;margin-top:14px;padding:13px;background:var(--azul);color:white;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;cursor:pointer;border-radius:2px;transition:background .15s;}
+.q-submit:hover{background:var(--azul2);}
+.q-submit:disabled{background:var(--g3);cursor:not-allowed;}
+.q-ok{display:none;margin-top:12px;padding:13px;background:var(--teal3);border:1px solid var(--teal);font-size:13px;color:var(--teal);line-height:1.65;text-align:center;border-radius:2px;}
+.q-ok.show{display:block;}
+
+/* footer */
+.footer-strip{background:var(--azul);padding:11px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;}
+.footer-strip span{font-size:11px;color:rgba(255,255,255,.3);}
+
+@media print{.print-bar{display:none;}.q-submit,.q-ok{display:none;}}
+</style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>🌿 Liberecco — Propuesta de servicios digitales · Junio 2026</span>
+  <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
+</div>
+
+<div class="triptico">
+
+<!-- ══ COL IZQUIERDA — PROPUESTA ECONÓMICA ══ -->
+<div class="col-izq">
+  <div class="top-strip-izq">Propuesta de servicios · Lake Elsinore, CA</div>
+  <div class="brand-area">
+    <div class="brand-name">Liberecco</div>
+    <div class="brand-sub">Plataforma Escolar Digital</div>
+    <div class="brand-loc">32504 Sprucewood Way · Lake Elsinore, CA 92532</div>
+  </div>
+  <div class="col-izq-inner">
+
+    <div>
+      <div class="hl-big">La propuesta.<br><em>Generosa.</em><br>Justa para los dos.</div>
+      <div class="hl-p">Una plataforma escolar completa a precio de entrada, con una propuesta de intercambio que pone a mi hija en Liberecco y me da razón de estar aquí el tiempo que lo necesiten.</div>
+    </div>
+
+    <div class="precio-box">
+      <div class="precio-tag">Plataforma completa · Pago único</div>
+      <div class="precio-num">$1,350 <span style="font-size:18px;opacity:.7">USD</span></div><div style="font-size:13px;color:rgba(255,255,255,.4);margin-top:2px;">≈ $25,650 MXN · tipo de cambio protegido</div>
+      <div class="precio-usd">+ colegiatura anual de mi hija · entrega 6–8 semanas</div>
+      <div class="iva-box"><strong>Con factura SAT:</strong> $1,550 USD + IVA 16% = <strong>$1,800 USD</strong><br>≈ $29,450 MXN · CFDI · Persona Física · deducible</div>
+      <ul class="p-items">
+        <li>4 roles: admin · directora · docente · padre</li>
+        <li>CRM con pipeline de prospectos integrado</li>
+        <li>Google Drive + Gemini AI para Penpals</li>
+        <li>Calendario con Meet links únicos por taller</li>
+        <li>Mensajería interna · grabaciones · materiales</li>
+        <li>Capacitación completa + manual de uso</li>
+      </ul>
+    </div>
+
+    <div class="intercambio">
+      <div class="intercambio-label">Opción de intercambio</div>
+      <div class="split-grid">
+        <div class="split-item sv">
+          <div class="split-val">$1,350 USD</div>
+          <div class="split-det">≈ $25,650 MXN · pago único al inicio · + IVA si requiere factura</div>
+        </div>
+        <div class="split-item sn">
+          <div class="split-val">1 ciclo escolar completo</div>
+          <div class="split-det">Colegiatura de mi hija · ciclo 2026–2027</div>
+        </div>
+      </div>
+      <div class="intercambio-why"><strong>¿Por qué tiene sentido?</strong> La escuela paga $25,000 MXN por una plataforma valuada en $85k–$350k. La colegiatura es un lugar disponible sin costo marginal para ustedes — pero tiene valor real para mí. Quedo comprometida: mi hija estudia aquí, tengo razón permanente de que todo funcione bien.</div>
+    </div>
+
+    <div class="semana1">
+      <div class="s1-label">Primera semana de trabajo</div>
+      <div class="s1-txt">Antes de escribir código, la primera semana la dedicamos a diseñar exactamente lo que la escuela necesita. Cada sección, cada nombre, cada flujo. El resultado refleja Liberecco — no una plantilla genérica.</div>
+    </div>
+
+    <div>
+      <div class="post-label">Servicios después de la entrega</div>
+      <div class="mant-row">
+        <div class="mant-precio">$85 <span style="font-size:12px;opacity:.7">USD/mes</span></div>
+        <div class="mant-desc">Mantenimiento · 3 cambios + respaldo + soporte<br><span style="font-size:10px;color:rgba(255,255,255,.35);">≈ $1,615 MXN · con factura: $95 USD / ≈ $1,805 MXN</span></div>
+      </div>
+      <div class="mant-row">
+        <div class="mant-precio">$250 <span style="font-size:12px;opacity:.7">USD/mes</span></div>
+        <div class="mant-desc">SEO mensual<br><span style="font-size:10px;color:rgba(255,255,255,.35);">≈ $4,750 MXN · Inicia mes 4 · 3 meses gratis · con factura: $285 USD</span></div>
+      </div>
+      <div class="mant-row">
+        <div class="mant-precio">$0 / mes</div>
+        <div class="mant-desc">Infraestructura · Stack 100% Google</div>
+      </div>
+    </div>
+
+    <div class="fact-box">
+      <div class="fact-label">Resumen con IVA · Factura SAT</div>
+      <div class="f-row"><span class="f-concepto">Plataforma</span><span class="f-total">$1,800 USD <span style="font-size:10px;font-weight:400;color:rgba(255,255,255,.4);">≈ $29,450 MXN</span></span></div>
+      <div class="f-row"><span class="f-concepto">SEO / mes</span><span class="f-total">$285 USD <span style="font-size:10px;font-weight:400;color:rgba(255,255,255,.4);">≈ $5,415 MXN</span></span></div>
+      <div class="f-row"><span class="f-concepto">Mantenimiento / mes</span><span class="f-total">$95 USD <span style="font-size:10px;font-weight:400;color:rgba(255,255,255,.4);">≈ $1,805 MXN</span></span></div>
+      <div class="f-sub">Tipo de cambio protegido: $19 MXN/USD · mercado actual: ~$17.45 · colchón ante fluctuación incluido.</div>
+    </div>
+
+    <div class="ws-box">
+      <div class="ws-label">⚠ Google Workspace — sujeto a confirmación</div>
+      <div class="ws-txt">
+        <strong>Con 501(c)(3):</strong> Workspace for Education sin costo — Gmail, Drive, Meet, Classroom.<br><br>
+        <strong>Sin 501(c)(3):</strong> Business Starter ~$432 USD/año. La propuesta contempla un colchón de $500 USD.<br><br>
+        El precio final se ajusta al confirmar estatus ante el IRS.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ COL CENTRAL — COMPARATIVA + TIMELINE + VIDEO ══ -->
+<div class="col-centro">
+  <div class="top-strip">Mercado vs. mi precio · Estrategia anual · Demo en video</div>
+  <div class="col-centro-inner">
+
+    <div class="comp-card">
+      <div class="comp-header ct">Plataforma educativa completa</div>
+      <div class="comp-grid">
+        <div class="comp-col">
+          <div class="comp-flag">🇲🇽 México</div>
+          <div class="comp-brand">Magokoro.mx</div>
+          <div class="comp-precio ellos">$85k–350k MXN</div>
+          <div class="comp-sub">magokoro.mx</div>
+          <div class="comp-det">Custom dev · 3–6 meses · sin CRM ni AI</div>
+        </div>
+        <div class="comp-col">
+          <div class="comp-flag">🇺🇸 EE.UU.</div>
+          <div class="comp-brand">NimbleAppGenie</div>
+          <div class="comp-precio ellos">$25k–150k USD</div>
+          <div class="comp-sub">nimbleappgenie.com</div>
+          <div class="comp-det">EdTech platform · agency rate</div>
+        </div>
+        <div class="comp-col">
+          <div class="comp-flag">🌿 Yo</div>
+          <div class="comp-brand">Propuesta Liberecco</div>
+          <div class="comp-precio yo">$1,350 USD</div>
+          <div class="comp-sub">≈ $25,650 MXN · + colegiatura anual</div>
+          <div class="comp-plus-label">Pluses exclusivos</div>
+          <ul class="comp-plus">
+            <li>Stack Google = $0/mes infra</li>
+            <li>CRM + Penpals AI incluidos</li>
+            <li>Diseño a medida semana 1</li>
+            <li>Opción de intercambio</li>
+            <li>Proveedora con hija en la escuela</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-header">SEO mensual</div>
+      <div class="comp-grid">
+        <div class="comp-col">
+          <div class="comp-flag">🇲🇽 México</div>
+          <div class="comp-brand">ConsultorSEOMexico</div>
+          <div class="comp-precio ellos">$6k–18k MXN/mes</div>
+          <div class="comp-sub">consultorseomexico.com</div>
+          <div class="comp-det">Sin modelo diferido · cobro desde mes 1</div>
+        </div>
+        <div class="comp-col">
+          <div class="comp-flag">🇺🇸 EE.UU.</div>
+          <div class="comp-brand">WebFX.com</div>
+          <div class="comp-precio ellos">$500–5,000 USD/mes</div>
+          <div class="comp-sub">webfx.com/seo/pricing</div>
+          <div class="comp-det">Standard retainer · cobro inmediato</div>
+        </div>
+        <div class="comp-col">
+          <div class="comp-flag">🌿 Yo</div>
+          <div class="comp-brand">Propuesta Liberecco</div>
+          <div class="comp-precio yo">$250 USD/mes</div>
+          <div class="comp-sub">≈ $4,750 MXN/mes</div>
+          <div class="comp-plus-label">Pluses exclusivos</div>
+          <ul class="comp-plus">
+            <li>3 meses gratuitos primero</li>
+            <li>Pagas al mes 4 con evidencia</li>
+            <li>Cancelable con 30 días de aviso</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-header">Mantenimiento mensual</div>
+      <div class="comp-grid">
+        <div class="comp-col">
+          <div class="comp-flag">🇲🇽 México</div>
+          <div class="comp-brand">Fencode.dev</div>
+          <div class="comp-precio ellos">$3k–15k MXN/mes</div>
+          <div class="comp-sub">fencode.dev</div>
+          <div class="comp-det">Sin cambios menores incluidos</div>
+        </div>
+        <div class="comp-col">
+          <div class="comp-flag">🇺🇸 EE.UU.</div>
+          <div class="comp-brand">ArcIntermedia</div>
+          <div class="comp-precio ellos">$300–2,000 USD/mes</div>
+          <div class="comp-sub">arcintermedia.com</div>
+          <div class="comp-det">Sin soporte directo incluido</div>
+        </div>
+        <div class="comp-col">
+          <div class="comp-flag">🌿 Yo</div>
+          <div class="comp-brand">Propuesta Liberecco</div>
+          <div class="comp-precio yo">$85 USD/mes</div>
+          <div class="comp-sub">≈ $1,615 MXN/mes</div>
+          <div class="comp-plus-label">Pluses exclusivos</div>
+          <ul class="comp-plus">
+            <li>3 cambios menores incluidos</li>
+            <li>Respaldo + monitoreo activo</li>
+            <li>Soporte directo sin intermediarios</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-section">
+      <div class="tl-header">Estrategia anual — cómo se ve el año</div>
+      <div class="tl-row"><div class="tl-tag t">Sem 1</div><div class="tl-accion">Diagnóstico + bosquejo personalizado<span>Reunión de diseño · secciones y flujos exactos de Liberecco</span></div></div>
+      <div class="tl-row"><div class="tl-tag">Sem 2–8</div><div class="tl-accion">Construcción + integraciones Google<span>Drive · Meet · Gemini AI · Penpals · CRM · todos los roles</span></div></div>
+      <div class="tl-row"><div class="tl-tag t">Mes 2–3</div><div class="tl-accion">SEO: auditoría + correcciones · sin costo<span>Typo · Search Console · keywords · dominio nuevo</span></div></div>
+      <div class="tl-row"><div class="tl-tag">Mes 3</div><div class="tl-accion">Entrega + capacitación planta docente<span>2 sesiones · manual · plataforma en vivo</span></div></div>
+      <div class="tl-row"><div class="tl-tag">Mes 4+</div><div class="tl-accion">SEO: cobro mensual con evidencia en mano<span>$250 USD/mes ≈ $4,750 MXN · renovable · cancelable 30 días de aviso</span></div></div>
+      <div class="tl-row"><div class="tl-tag">Mensual</div><div class="tl-accion">Mantenimiento recurrente + soporte<span>$85 USD/mes ≈ $1,615 MXN desde la entrega</span></div></div>
+    </div>
+
+    <div class="video-section">
+      <div class="video-header">🎥 Demo de la plataforma — recorrido completo (15 min)</div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/QElLf4E95Mw" title="Demo Liberecco" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ COL DERECHA — 3 BLOQUES TEMÁTICOS ══ -->
+<div class="col-der">
+  <div class="top-strip">Problemas que resuelve · Diagnóstico SEO · Cuestionario</div>
+  <div class="col-der-inner">
+
+    <!-- BLOQUE 1: PAINKILLERS -->
+    <div class="bloque">
+      <div class="bh teal">
+        <div class="bh-eyebrow">Servicio A — Plataforma escolar</div>
+        <div class="bh-titulo">Lo que esta plataforma elimina del día a día</div>
+      </div>
+      <div class="bb">
+        <div class="pk-item">
+          <div class="pk-icon">📅</div>
+          <div class="pk-txt">
+            <strong>Links de Meet por WhatsApp en el momento</strong>
+            <span>Padres entran tarde, al taller equivocado, o no entran. Con la plataforma el link de cada taller vive fijo en el calendario desde que se publica.</span>
+          </div>
+        </div>
+        <div class="pk-item">
+          <div class="pk-icon">📰</div>
+          <div class="pk-txt">
+            <strong>Newsletter mensual armado a mano</strong>
+            <span>Calendario, materiales, avisos y cambios de horario se publican directamente en la plataforma. Los padres los ven en tiempo real.</span>
+          </div>
+        </div>
+        <div class="pk-item">
+          <div class="pk-icon">✉️</div>
+          <div class="pk-txt">
+            <strong>Penpals: Google Form que se llena desde cero cada ciclo</strong>
+            <span>Con la plataforma esos datos ya están desde la asignación de la maestra. El padre solo sube la foto y envía. La maestra ve en tiempo real quién lo hizo.</span>
+          </div>
+        </div>
+        <div class="pk-item">
+          <div class="pk-icon">🎥</div>
+          <div class="pk-txt">
+            <strong>Grabaciones y materiales dispersos sin orden</strong>
+            <span>La plataforma organiza por mes y materia. Las grabaciones quedan disponibles para quien no pudo entrar al vivo.</span>
+          </div>
+        </div>
+        <div class="pk-item">
+          <div class="pk-icon">📊</div>
+          <div class="pk-txt">
+            <strong>CRM: prospectos y renovaciones en un solo lugar</strong>
+            <span>Pipeline de familias interesadas, seguimiento de renovaciones, alertas de alumnos en riesgo — visible para la directora sin hojas de cálculo.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 2: DIAGNÓSTICO SEO -->
+    <div class="bloque">
+      <div class="bh azul">
+        <div class="bh-eyebrow">Servicio B — SEO y posicionamiento</div>
+        <div class="bh-titulo">Diagnóstico del sitio liberecohs.com</div>
+      </div>
+      <div class="bb">
+        <div class="diag-intro">
+          <strong>Sobre Wix:</strong> Genera JavaScript pesado que Google rastrea más lento. Hay un techo técnico real. Migrar a una plataforma más ágil es parte de lo que puedo hacer dentro del proyecto.
+        </div>
+        <div class="diag-item">
+          <div class="diag-num">1</div>
+          <div class="diag-txt">
+            <strong>Typo en el título: "Eduactional Freedom"</strong>
+            <span>Google lleva meses indexando ese error. Daña la credibilidad ante nuevas familias. Corrección inmediata en Wix.</span>
+          </div>
+        </div>
+        <div class="diag-item">
+          <div class="diag-num">2</div>
+          <div class="diag-txt">
+            <strong>El dominio liberecohs.com no comunica la marca</strong>
+            <span>Nadie busca "liberecohs". Recomiendo registrar <strong>liberecco.com</strong> o <strong>liberecco.mx</strong> y redirigir — ~$15 USD/año.</span>
+          </div>
+        </div>
+        <div class="diag-item">
+          <div class="diag-num">3</div>
+          <div class="diag-txt">
+            <strong>El CTA principal va a WhatsApp, no a la web</strong>
+            <span>Google no puede rastrear esas conversiones. Ninguna familia que contacta por WhatsApp deja huella medible para el SEO.</span>
+          </div>
+        </div>
+        <div class="diag-item">
+          <div class="diag-num">4</div>
+          <div class="diag-txt">
+            <strong>Confusión de marca: Libereco vs Liberecco</strong>
+            <span>El sitio, las redes y los materiales usan indistintamente una o dos c. Google no sabe con cuál nombre asociarlos.</span>
+          </div>
+        </div>
+        <div class="estrategia-box">
+          <div class="estrategia-label">Plan de ataque · Orden de prioridad</div>
+          <div class="e-row"><div class="e-tag t">Sem 1</div><div class="e-txt">Corrección del typo + auditoría técnica completa</div></div>
+          <div class="e-row"><div class="e-tag">Mes 1</div><div class="e-txt">Nuevo dominio unificado + redirección + Search Console</div></div>
+          <div class="e-row"><div class="e-tag">Mes 1–2</div><div class="e-txt">2 páginas de contenido/mes con keywords del nicho educativo</div></div>
+          <div class="e-row"><div class="e-tag">Mes 2–3</div><div class="e-txt">Formulario de contacto real · reemplaza link de WhatsApp</div></div>
+          <div class="e-row"><div class="e-tag t">Mes 4+</div><div class="e-txt">Reportes mensuales: posiciones · clics · impresiones</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 3: CUESTIONARIO -->
+    <div class="bloque">
+      <div class="bh acento">
+        <div class="bh-eyebrow">Antes de la reunión</div>
+        <div class="bh-titulo">Cuestionario de diagnóstico</div>
+      </div>
+      <div class="bb">
+        <form id="form-diag" action="https://formspree.io/f/xnjygzew" method="POST">
+          <input type="hidden" name="_subject" value="Diagnóstico Liberecco">
+
+          <!-- SECCIÓN A: DATOS -->
+          <div class="q-seccion">
+            <div class="q-seccion-titulo">📋 Sus datos</div>
+            <div class="q-grid2">
+              <div class="q-field">
+                <label class="q-label">Nombre completo</label>
+                <input class="q-input" type="text" name="nombre" required placeholder="Ej. María González">
+              </div>
+              <div class="q-field">
+                <label class="q-label">Rol en la escuela</label>
+                <select class="q-input" name="rol" required>
+                  <option value="">Seleccionar…</option>
+                  <option>Directora</option>
+                  <option>Administradora</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓN B: PLATAFORMA -->
+          <div class="q-seccion">
+            <div class="q-seccion-titulo">🖥 Sobre la plataforma escolar</div>
+            <div class="q-stack">
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">1</span>Alumnos activos hoy y esperados el próximo ciclo</label>
+                <input class="q-input" type="text" name="alumnos" placeholder="Ej. 24 hoy · 35 el próximo ciclo">
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">2</span>¿Cuántas docentes y admins necesitan acceso total?</label>
+                <input class="q-input" type="text" name="docentes_admins" placeholder="Ej. 5 docentes · 2 admins">
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">3</span>¿Un acceso por familia o pueden entrar ambos padres?</label>
+                <div class="q-radios">
+                  <label class="q-radio"><input type="radio" name="acceso" value="uno"> Un acceso</label>
+                  <label class="q-radio"><input type="radio" name="acceso" value="dos"> Dos padres</label>
+                  <label class="q-radio"><input type="radio" name="acceso" value="ambos"> Ambas opciones</label>
+                </div>
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">4</span>¿Cuántas clases en vivo por semana y cuánto dura cada una?</label>
+                <input class="q-input" type="text" name="clases" placeholder="Ej. 8 clases · 1 hora cada una">
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">5</span>¿Cuántos alumnos están en Penpals y con qué frecuencia intercambian cartas?</label>
+                <input class="q-input" type="text" name="penpals" placeholder="Ej. 20 alumnos · una carta al mes">
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">6</span>¿Graban las clases actualmente? ¿Cómo las guardan?</label>
+                <input class="q-input" type="text" name="grabaciones" placeholder="Ej. teléfono, Meet, Drive, no graban">
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓN C: SITIO WEB -->
+          <div class="q-seccion">
+            <div class="q-seccion-titulo">🔍 Sobre el sitio web y SEO</div>
+            <div class="q-stack">
+              <div class="q-field">
+                <label class="q-label"><span class="q-num t">7</span>¿Tienen acceso a Google Search Console?</label>
+                <div class="q-radios">
+                  <label class="q-radio"><input type="radio" name="console" value="si"> Sí</label>
+                  <label class="q-radio"><input type="radio" name="console" value="no"> No</label>
+                  <label class="q-radio"><input type="radio" name="console" value="nose"> No sé qué es</label>
+                </div>
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num t">8</span>¿El nombre oficial registrado es Libereco o Liberecco?
+                  <span class="nota">Afecta el SEO y el branding directamente</span>
+                </label>
+                <div class="q-radios">
+                  <label class="q-radio"><input type="radio" name="nombre_marca" value="una-c"> Libereco (una c)</label>
+                  <label class="q-radio"><input type="radio" name="nombre_marca" value="dos-c"> Liberecco (dos c)</label>
+                  <label class="q-radio"><input type="radio" name="nombre_marca" value="nose"> No estoy segura</label>
+                </div>
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num t">9</span>¿Por qué el dominio es liberecohs.com? ¿Intentaron otro antes?</label>
+                <input class="q-input" type="text" name="dominio" placeholder="Respuesta libre">
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓN D: LEGAL -->
+          <div class="q-seccion">
+            <div class="q-seccion-titulo">⚖️ Marco legal California + México</div>
+            <div class="q-stack">
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">10</span>¿Operan como organización 501(c)(3) sin fines de lucro?
+                  <span class="nota">Define si Google Workspace Education es gratuito o tiene costo anual</span>
+                </label>
+                <div class="q-radios">
+                  <label class="q-radio"><input type="radio" name="nonprofit" value="si"> Sí, 501(c)(3) activo</label>
+                  <label class="q-radio"><input type="radio" name="nonprofit" value="no"> No, escuela privada</label>
+                  <label class="q-radio"><input type="radio" name="nonprofit" value="nose"> No estoy segura</label>
+                </div>
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">11</span>¿Tienen el Private School Affidavit presentado ante California?
+                  <span class="nota">Cal. Ed. Code §33190 · obligatorio cada octubre</span>
+                </label>
+                <div class="q-radios">
+                  <label class="q-radio"><input type="radio" name="affidavit" value="si"> Sí, al día</label>
+                  <label class="q-radio"><input type="radio" name="affidavit" value="no"> No / no sé</label>
+                </div>
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">12</span>¿Tienen consentimientos COPPA/FERPA firmados?
+                  <span class="nota">Requerido para datos digitales de menores en EE.UU.</span>
+                </label>
+                <div class="q-radios">
+                  <label class="q-radio"><input type="radio" name="coppa" value="si"> Sí</label>
+                  <label class="q-radio"><input type="radio" name="coppa" value="no"> No / no sé</label>
+                </div>
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num">13</span>¿Tienen reconocimiento de validez SEP vigente para alumnos mexicanos?</label>
+                <div class="q-radios">
+                  <label class="q-radio"><input type="radio" name="sep" value="si"> Sí, vigente</label>
+                  <label class="q-radio"><input type="radio" name="sep" value="no"> No / vencido</label>
+                  <label class="q-radio"><input type="radio" name="sep" value="na"> No aplica</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓN E: INTERCAMBIO -->
+          <div class="q-seccion">
+            <div class="q-seccion-titulo">💰 Intercambio y presupuesto</div>
+            <div class="q-stack">
+              <div class="q-field">
+                <label class="q-label"><span class="q-num t">14</span>¿Cuál es la colegiatura mensual y cuántos meses dura el ciclo?
+                  <span class="nota">Para validar la equivalencia de la propuesta de intercambio</span>
+                </label>
+                <input class="q-input" type="text" name="colegiatura" placeholder="Ej. $400 USD/mes · 9 meses">
+              </div>
+              <div class="q-field">
+                <label class="q-label"><span class="q-num t">15</span>¿Algún comentario o pregunta antes de la reunión?</label>
+                <textarea class="q-input q-textarea" name="comentarios" rows="3" placeholder="Comentarios libres…"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="q-submit" id="q-btn">Enviar respuestas del diagnóstico →</button>
+          <div class="q-ok" id="q-ok"><strong>✓ Respuestas recibidas</strong><br>Gracias. Las revisamos antes de la reunión y nos comunicamos contigo a la brevedad.</div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /triptico -->
+
+<div class="footer-strip">
+  <span>🌿 Liberecco · Lake Elsinore, CA · Propuesta de servicios digitales · Confidencial · Junio 2026</span>
+  <span>Fuentes: magokoro.mx · consultorseomexico.com · webfx.com · nimbleappgenie.com · fencode.dev · arcintermedia.com</span>
+</div>
+
+<script>
+const form=document.getElementById('form-diag');
+if(form){form.addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=document.getElementById('q-btn'),ok=document.getElementById('q-ok');
+  btn.disabled=true;btn.textContent='Enviando…';
+  try{
+    const r=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(r.ok){btn.style.display='none';ok.classList.add('show');form.querySelectorAll('input,select,textarea').forEach(el=>el.disabled=true);}
+    else{btn.textContent='Error — intenta de nuevo';btn.disabled=false;}
+  }catch(err){btn.textContent='Error de conexión';btn.disabled=false;}
+});}
+</script>
+</body>
+</html>
