@@ -240,11 +240,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--g2);color:var(--t);font-s
 
 
 
+
+/* ROTATE OVERLAY */
+.rotate-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#0F2744;z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+@media (max-width:768px) and (orientation:portrait){.rotate-overlay{display:flex;}}
+.rotate-icon{width:80px;height:80px;animation:rotar 2s ease-in-out infinite;}
+@keyframes rotar{0%{transform:rotate(0deg);}50%{transform:rotate(-90deg);}100%{transform:rotate(0deg);}}
+.rotate-txt{font-family:'DM Sans',sans-serif;font-size:14px;color:rgba(255,255,255,.6);text-align:center;letter-spacing:.05em;}
+.rotate-brand{font-family:'DM Serif Display',serif;font-size:22px;color:white;}
 @media print{.print-bar{display:none;}.q-submit,.q-ok{display:none;}.lang-bar{display:none;}}
 </style>
 </head>
 <body>
 
+
+<div class="rotate-overlay">
+  <div class="rotate-brand">Liberecco</div>
+  <svg class="rotate-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="22" y="8" width="36" height="64" rx="6" stroke="white" stroke-width="3"/>
+    <circle cx="40" cy="62" r="3" fill="white"/>
+    <path d="M58 18 Q72 18 72 32" stroke="#4A9A5C" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M68 28 L72 32 L76 28" stroke="#4A9A5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M22 62 Q8 62 8 48" stroke="#4A9A5C" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M12 52 L8 48 L4 52" stroke="#4A9A5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </svg>
+  <div class="rotate-txt">Gira tu dispositivo<br>para ver la propuesta completa</div>
+</div>
 <div class="print-bar">
   <span>🌿 Liberecco: Propuesta de servicios digitales · Junio 2026</span>
   <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
