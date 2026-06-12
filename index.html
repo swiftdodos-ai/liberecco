@@ -25,28 +25,28 @@
   --ok:#1A7A8A;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'DM Sans',sans-serif;background:var(--g1);color:var(--t);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+body{font-family:'DM Sans',sans-serif;background:var(--g2);color:var(--t);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;}
 
 /* PRINT BAR */
-.print-bar{background:var(--azul);padding:11px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--teal2);}
+.print-bar{background:var(--azul);padding:11px 36px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--teal2);}
 .print-bar span{color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.07em;text-transform:uppercase;}
 .btn-print{background:var(--teal);color:white;border:none;padding:8px 20px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;border-radius:2px;}
 .btn-print:hover{background:var(--teal2);}
 
 /* LAYOUT */
-.triptico{display:grid;grid-template-columns:290px 1fr 1fr;min-height:calc(100vh - 44px);}
+.triptico{display:flex;flex-direction:column;max-width:900px;margin:0 auto;}
 
 /* ══ COL IZQUIERDA ══ */
 .col-izq{background:var(--azul);display:flex;flex-direction:column;}
-.top-strip-izq{background:var(--teal);padding:10px 22px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:white;}
-.brand-area{padding:26px 22px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
-.brand-name{font-family:'DM Serif Display',serif;font-size:32px;color:white;line-height:1;margin-bottom:4px;}
+.top-strip-izq{background:var(--teal);padding:10px 36px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:white;}
+.brand-area{padding:28px 36px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand-name{font-family:'DM Serif Display',serif;font-size:42px;color:white;line-height:1;margin-bottom:6px;}
 .brand-sub{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;}
 .brand-loc{font-size:10px;color:rgba(255,255,255,.25);margin-top:5px;}
 
-.col-izq-inner{padding:20px;flex:1;display:flex;flex-direction:column;gap:16px;}
+.col-izq-inner{padding:28px 36px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
 
-.hl-big{font-family:'DM Serif Display',serif;font-size:24px;color:white;line-height:1.25;margin-bottom:8px;}
+.hl-big{font-family:'DM Serif Display',serif;font-size:32px;color:white;line-height:1.2;margin-bottom:10px;}
 .hl-big em{font-style:italic;color:var(--acento2);}
 .hl-p{font-size:12px;color:rgba(255,255,255,.5);line-height:1.7;}
 
@@ -103,12 +103,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--g1);color:var(--t);font-s
 .ws-txt strong{color:white;}
 
 /* ══ COL CENTRAL ══ */
-.col-centro{background:var(--b);border-left:1px solid var(--g2);border-right:1px solid var(--g2);display:flex;flex-direction:column;}
-.top-strip{background:var(--azul);padding:10px 20px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);}
-.col-centro-inner{padding:18px;flex:1;}
+.col-centro{background:var(--b);border-top:3px solid var(--teal);display:flex;flex-direction:column;}
+.top-strip{background:var(--azul);padding:10px 36px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.col-centro-inner{padding:28px 36px;flex:1;}
 
 /* comparativas */
-.comp-card{border:1px solid var(--g2);margin-bottom:14px;overflow:hidden;}
+.comp-card{border:1px solid var(--g2);margin-bottom:16px;overflow:hidden;}
 .comp-header{background:var(--azul);padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:white;}
 .comp-header.ct{background:var(--teal);}
 .comp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;}
@@ -127,7 +127,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--g1);color:var(--t);font-s
 .comp-plus li::before{content:'✓';position:absolute;left:0;font-size:10px;}
 
 /* timeline */
-.tl-section{border:1px solid var(--g2);overflow:hidden;}
+.tl-section{border:1px solid var(--g2);overflow:hidden;margin-top:20px;}
 .tl-header{background:var(--g1);padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--azul);border-bottom:1px solid var(--g2);}
 .tl-row{display:flex;align-items:stretch;border-bottom:1px solid var(--g2);}
 .tl-row:last-child{border-bottom:none;}
@@ -141,10 +141,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--g1);color:var(--t);font-s
 .video-header{background:var(--azul);padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:white;}
 .video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+.comp-toggle{width:100%;background:var(--azul);border:none;padding:12px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;}
+.comp-toggle:hover{background:var(--azul2);}
+.comp-toggle-left{display:flex;flex-direction:column;gap:3px;}
+.comp-toggle-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:white;}
+.comp-toggle-yo{font-size:13px;color:rgba(255,255,255,.75);}
+.comp-toggle-yo strong{color:var(--teal2);font-size:15px;}
+.comp-toggle-yo em{font-size:11px;color:rgba(255,255,255,.45);font-style:normal;}
+.comp-arrow{font-size:10px;color:rgba(255,255,255,.5);white-space:nowrap;flex-shrink:0;transition:transform .2s;}
+.comp-arrow.open{transform:rotate(90deg);}
+.comp-body{border-top:1px solid var(--g2);}
 
 /* ══ COL DERECHA ══ */
-.col-der{background:var(--g1);display:flex;flex-direction:column;}
-.col-der-inner{padding:18px;flex:1;display:flex;flex-direction:column;gap:16px;}
+.col-der{background:var(--g1);border-top:3px solid var(--azul);display:flex;flex-direction:column;}
+.col-der-inner{padding:28px 36px;flex:1;display:flex;flex-direction:column;gap:20px;}
 
 /* BLOQUE genérico */
 .bloque{background:white;border:1px solid var(--g2);overflow:hidden;}
@@ -211,7 +221,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--g1);color:var(--t);font-s
 .q-ok.show{display:block;}
 
 /* footer */
-.footer-strip{background:var(--azul);padding:11px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;}
+.footer-strip{background:var(--azul);padding:16px 36px;display:flex;justify-content:space-between;align-items:center;gap:20px;max-width:900px;margin:0 auto;width:100%;}
 .footer-strip span{font-size:11px;color:rgba(255,255,255,.3);}
 
 @media print{.print-bar{display:none;}.q-submit,.q-ok{display:none;}}
@@ -317,100 +327,127 @@ body{font-family:'DM Sans',sans-serif;background:var(--g1);color:var(--t);font-s
   <div class="top-strip">Mercado vs. mi precio · Estrategia anual · Demo en video</div>
   <div class="col-centro-inner">
 
+    <!-- COMPARATIVA 1 -->
     <div class="comp-card">
-      <div class="comp-header ct">Plataforma educativa completa</div>
-      <div class="comp-grid">
-        <div class="comp-col">
-          <div class="comp-flag">🇲🇽 México</div>
-          <div class="comp-brand">Magokoro.mx</div>
-          <div class="comp-precio ellos">$85k–350k MXN</div>
-          <div class="comp-sub">magokoro.mx</div>
-          <div class="comp-det">Custom dev · 3–6 meses · sin CRM ni AI</div>
+      <button class="comp-toggle" onclick="toggleComp(this)">
+        <div class="comp-toggle-left">
+          <span class="comp-toggle-title">Plataforma educativa completa</span>
+          <span class="comp-toggle-yo">Mi precio: <strong>$1,350 USD</strong> <em>≈ $25,650 MXN</em></span>
         </div>
-        <div class="comp-col">
-          <div class="comp-flag">🇺🇸 EE.UU.</div>
-          <div class="comp-brand">NimbleAppGenie</div>
-          <div class="comp-precio ellos">$25k–150k USD</div>
-          <div class="comp-sub">nimbleappgenie.com</div>
-          <div class="comp-det">EdTech platform · agency rate</div>
-        </div>
-        <div class="comp-col">
-          <div class="comp-flag">🌿 Yo</div>
-          <div class="comp-brand">Propuesta Liberecco</div>
-          <div class="comp-precio yo">$1,350 USD</div>
-          <div class="comp-sub">≈ $25,650 MXN · + colegiatura anual</div>
-          <div class="comp-plus-label">Pluses exclusivos</div>
-          <ul class="comp-plus">
-            <li>Stack Google = $0/mes infra</li>
-            <li>CRM + Penpals AI incluidos</li>
-            <li>Diseño a medida semana 1</li>
-            <li>Opción de intercambio</li>
-            <li>Proveedora con hija en la escuela</li>
-          </ul>
+        <span class="comp-arrow">▶ Ver comparativa de mercado</span>
+      </button>
+      <div class="comp-body" style="display:none">
+        <div class="comp-grid">
+          <div class="comp-col">
+            <div class="comp-flag">🇲🇽 México</div>
+            <div class="comp-brand">Magokoro.mx</div>
+            <div class="comp-precio ellos">$85k–350k MXN</div>
+            <div class="comp-sub">magokoro.mx</div>
+            <div class="comp-det">Custom dev · 3–6 meses · sin CRM ni AI</div>
+          </div>
+          <div class="comp-col">
+            <div class="comp-flag">🇺🇸 EE.UU.</div>
+            <div class="comp-brand">NimbleAppGenie</div>
+            <div class="comp-precio ellos">$25k–150k USD</div>
+            <div class="comp-sub">nimbleappgenie.com</div>
+            <div class="comp-det">EdTech platform · agency rate</div>
+          </div>
+          <div class="comp-col">
+            <div class="comp-flag">🌿 Yo</div>
+            <div class="comp-brand">Propuesta Liberecco</div>
+            <div class="comp-precio yo">$1,350 USD</div>
+            <div class="comp-sub">≈ $25,650 MXN · + colegiatura anual</div>
+            <div class="comp-plus-label">Pluses exclusivos</div>
+            <ul class="comp-plus">
+              <li>Stack Google = $0/mes infra</li>
+              <li>CRM + Penpals AI incluidos</li>
+              <li>Diseño a medida semana 1</li>
+              <li>Opción de intercambio</li>
+              <li>Proveedora con hija en la escuela</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- COMPARATIVA 2 -->
     <div class="comp-card">
-      <div class="comp-header">SEO mensual</div>
-      <div class="comp-grid">
-        <div class="comp-col">
-          <div class="comp-flag">🇲🇽 México</div>
-          <div class="comp-brand">ConsultorSEOMexico</div>
-          <div class="comp-precio ellos">$6k–18k MXN/mes</div>
-          <div class="comp-sub">consultorseomexico.com</div>
-          <div class="comp-det">Sin modelo diferido · cobro desde mes 1</div>
+      <button class="comp-toggle" onclick="toggleComp(this)">
+        <div class="comp-toggle-left">
+          <span class="comp-toggle-title">SEO mensual</span>
+          <span class="comp-toggle-yo">Mi precio: <strong>$250 USD/mes</strong> <em>≈ $4,750 MXN</em></span>
         </div>
-        <div class="comp-col">
-          <div class="comp-flag">🇺🇸 EE.UU.</div>
-          <div class="comp-brand">WebFX.com</div>
-          <div class="comp-precio ellos">$500–5,000 USD/mes</div>
-          <div class="comp-sub">webfx.com/seo/pricing</div>
-          <div class="comp-det">Standard retainer · cobro inmediato</div>
-        </div>
-        <div class="comp-col">
-          <div class="comp-flag">🌿 Yo</div>
-          <div class="comp-brand">Propuesta Liberecco</div>
-          <div class="comp-precio yo">$250 USD/mes</div>
-          <div class="comp-sub">≈ $4,750 MXN/mes</div>
-          <div class="comp-plus-label">Pluses exclusivos</div>
-          <ul class="comp-plus">
-            <li>3 meses gratuitos primero</li>
-            <li>Pagas al mes 4 con evidencia</li>
-            <li>Cancelable con 30 días de aviso</li>
-          </ul>
+        <span class="comp-arrow">▶ Ver comparativa de mercado</span>
+      </button>
+      <div class="comp-body" style="display:none">
+        <div class="comp-grid">
+          <div class="comp-col">
+            <div class="comp-flag">🇲🇽 México</div>
+            <div class="comp-brand">ConsultorSEOMexico</div>
+            <div class="comp-precio ellos">$6k–18k MXN/mes</div>
+            <div class="comp-sub">consultorseomexico.com</div>
+            <div class="comp-det">Sin modelo diferido · cobro desde mes 1</div>
+          </div>
+          <div class="comp-col">
+            <div class="comp-flag">🇺🇸 EE.UU.</div>
+            <div class="comp-brand">WebFX.com</div>
+            <div class="comp-precio ellos">$500–5,000 USD/mes</div>
+            <div class="comp-sub">webfx.com/seo/pricing</div>
+            <div class="comp-det">Standard retainer · cobro inmediato</div>
+          </div>
+          <div class="comp-col">
+            <div class="comp-flag">🌿 Yo</div>
+            <div class="comp-brand">Propuesta Liberecco</div>
+            <div class="comp-precio yo">$250 USD/mes</div>
+            <div class="comp-sub">≈ $4,750 MXN/mes</div>
+            <div class="comp-plus-label">Pluses exclusivos</div>
+            <ul class="comp-plus">
+              <li>3 meses gratuitos primero</li>
+              <li>Pagas al mes 4 con evidencia</li>
+              <li>Cancelable con 30 días de aviso</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- COMPARATIVA 3 -->
     <div class="comp-card">
-      <div class="comp-header">Mantenimiento mensual</div>
-      <div class="comp-grid">
-        <div class="comp-col">
-          <div class="comp-flag">🇲🇽 México</div>
-          <div class="comp-brand">Fencode.dev</div>
-          <div class="comp-precio ellos">$3k–15k MXN/mes</div>
-          <div class="comp-sub">fencode.dev</div>
-          <div class="comp-det">Sin cambios menores incluidos</div>
+      <button class="comp-toggle" onclick="toggleComp(this)">
+        <div class="comp-toggle-left">
+          <span class="comp-toggle-title">Mantenimiento mensual</span>
+          <span class="comp-toggle-yo">Mi precio: <strong>$85 USD/mes</strong> <em>≈ $1,615 MXN</em></span>
         </div>
-        <div class="comp-col">
-          <div class="comp-flag">🇺🇸 EE.UU.</div>
-          <div class="comp-brand">ArcIntermedia</div>
-          <div class="comp-precio ellos">$300–2,000 USD/mes</div>
-          <div class="comp-sub">arcintermedia.com</div>
-          <div class="comp-det">Sin soporte directo incluido</div>
-        </div>
-        <div class="comp-col">
-          <div class="comp-flag">🌿 Yo</div>
-          <div class="comp-brand">Propuesta Liberecco</div>
-          <div class="comp-precio yo">$85 USD/mes</div>
-          <div class="comp-sub">≈ $1,615 MXN/mes</div>
-          <div class="comp-plus-label">Pluses exclusivos</div>
-          <ul class="comp-plus">
-            <li>3 cambios menores incluidos</li>
-            <li>Respaldo + monitoreo activo</li>
-            <li>Soporte directo sin intermediarios</li>
-          </ul>
+        <span class="comp-arrow">▶ Ver comparativa de mercado</span>
+      </button>
+      <div class="comp-body" style="display:none">
+        <div class="comp-grid">
+          <div class="comp-col">
+            <div class="comp-flag">🇲🇽 México</div>
+            <div class="comp-brand">Fencode.dev</div>
+            <div class="comp-precio ellos">$3k–15k MXN/mes</div>
+            <div class="comp-sub">fencode.dev</div>
+            <div class="comp-det">Sin cambios menores incluidos</div>
+          </div>
+          <div class="comp-col">
+            <div class="comp-flag">🇺🇸 EE.UU.</div>
+            <div class="comp-brand">ArcIntermedia</div>
+            <div class="comp-precio ellos">$300–2,000 USD/mes</div>
+            <div class="comp-sub">arcintermedia.com</div>
+            <div class="comp-det">Sin soporte directo incluido</div>
+          </div>
+          <div class="comp-col">
+            <div class="comp-flag">🌿 Yo</div>
+            <div class="comp-brand">Propuesta Liberecco</div>
+            <div class="comp-precio yo">$85 USD/mes</div>
+            <div class="comp-sub">≈ $1,615 MXN/mes</div>
+            <div class="comp-plus-label">Pluses exclusivos</div>
+            <ul class="comp-plus">
+              <li>3 cambios menores incluidos</li>
+              <li>Respaldo + monitoreo activo</li>
+              <li>Soporte directo sin intermediarios</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -705,6 +742,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--g1);color:var(--t);font-s
 </div>
 
 <script>
+function toggleComp(btn){
+  const body=btn.nextElementSibling;
+  const arrow=btn.querySelector('.comp-arrow');
+  const isOpen=body.style.display!=='none';
+  body.style.display=isOpen?'none':'block';
+  arrow.textContent=isOpen?'▶ Ver comparativa de mercado':'▼ Ocultar comparativa';
+  arrow.classList.toggle('open',!isOpen);
+}
 const form=document.getElementById('form-diag');
 if(form){form.addEventListener('submit',async function(e){
   e.preventDefault();
