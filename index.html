@@ -111,8 +111,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--g2);color:var(--t);font-s
 .comp-card{border:1px solid var(--g2);margin-bottom:16px;overflow:hidden;}
 .comp-header{background:var(--azul);padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:white;}
 .comp-header.ct{background:var(--teal);}
-.comp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;}
-.comp-col{padding:13px;border-right:1px solid var(--g2);}
+.comp-grid{display:block;}
+.comp-col{display:none;}
+.comp-col:last-child{display:block;padding:16px 18px;background:var(--teal3);}
 .comp-col:last-child{border-right:none;background:var(--teal3);}
 .comp-flag{font-size:10px;color:var(--g4);margin-bottom:3px;}
 .comp-brand{font-size:13px;font-weight:700;color:var(--azul);margin-bottom:7px;}
@@ -141,16 +142,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--g2);color:var(--t);font-s
 .video-header{background:var(--azul);padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:white;}
 .video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
-.comp-toggle{width:100%;background:var(--azul);border:none;padding:12px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;}
+.comp-toggle{width:100%;background:var(--azul);border:none;padding:14px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;overflow:hidden;}
 .comp-toggle:hover{background:var(--azul2);}
 .comp-toggle-left{display:flex;flex-direction:column;gap:3px;}
 .comp-toggle-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:white;}
 .comp-toggle-yo{font-size:13px;color:rgba(255,255,255,.75);}
 .comp-toggle-yo strong{color:var(--teal2);font-size:15px;}
 .comp-toggle-yo em{font-size:11px;color:rgba(255,255,255,.45);font-style:normal;}
-.comp-arrow{font-size:10px;color:rgba(255,255,255,.5);white-space:nowrap;flex-shrink:0;transition:transform .2s;}
+.comp-arrow{font-size:11px;color:rgba(255,255,255,.55);white-space:nowrap;flex-shrink:0;background:rgba(255,255,255,.1);padding:4px 10px;border-radius:2px;}
 .comp-arrow.open{transform:rotate(90deg);}
 .comp-body{border-top:1px solid var(--g2);}
+.comp-rivals{padding:14px 18px;background:var(--g1);border-bottom:1px solid var(--g2);display:flex;flex-direction:column;gap:8px;}
+.rival-pill{font-size:12px;color:var(--t2);padding:8px 12px;background:white;border:1px solid var(--g2);border-left:3px solid #B04040;line-height:1.5;}
+.rival-pill strong{color:#7A2020;}
+.comp-yo{padding:16px 18px;background:var(--teal3);}
+.comp-yo-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
 
 /* ══ COL DERECHA ══ */
 .col-der{background:var(--g1);border-top:3px solid var(--azul);display:flex;flex-direction:column;}
@@ -346,35 +352,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--g2);color:var(--t);font-s
         <span class="comp-arrow">▶ Ver comparativa de mercado</span>
       </button>
       <div class="comp-body" style="display:none">
-        <div class="comp-grid">
-          <div class="comp-col">
-            <div class="comp-flag">🇲🇽 México</div>
-            <div class="comp-brand">Magokoro.mx</div>
-            <div class="comp-precio ellos">$85k–350k MXN</div>
-            <div class="comp-sub">magokoro.mx</div>
-            <div class="comp-det">Custom dev · 3–6 meses · sin CRM ni AI</div>
-          </div>
-          <div class="comp-col">
-            <div class="comp-flag">🇺🇸 EE.UU.</div>
-            <div class="comp-brand">NimbleAppGenie</div>
-            <div class="comp-precio ellos">$25k–150k USD</div>
-            <div class="comp-sub">nimbleappgenie.com</div>
-            <div class="comp-det">EdTech platform · agency rate</div>
-          </div>
-          <div class="comp-col">
-            <div class="comp-flag">🌿 Yo</div>
-            <div class="comp-brand">Propuesta Liberecco</div>
-            <div class="comp-precio yo">$1,350 USD</div>
-            <div class="comp-sub">≈ $25,650 MXN · + colegiatura anual</div>
-            <div class="comp-plus-label">Pluses exclusivos</div>
-            <ul class="comp-plus">
-              <li>Stack Google = $0/mes infra</li>
-              <li>CRM + Penpals AI incluidos</li>
-              <li>Diseño a medida semana 1</li>
-              <li>Opción de intercambio</li>
-              <li>Proveedora con hija en la escuela</li>
-            </ul>
-          </div>
+        <div class="comp-rivals">
+          <div class="rival-pill">🇲🇽 <strong>Magokoro.mx</strong> — $85k–350k MXN · Custom dev · 3–6 meses · sin CRM ni AI</div>
+          <div class="rival-pill">🇺🇸 <strong>NimbleAppGenie</strong> — $25k–150k USD · EdTech agency · sin integraciones Google</div>
+        </div>
+        <div class="comp-yo">
+          <div class="comp-yo-label">🌿 Propuesta Liberecco</div>
+          <div class="comp-precio yo">$1,350 USD <span style="font-size:13px;font-weight:400;color:var(--teal);">≈ $25,650 MXN · + colegiatura anual</span></div>
+          <div class="comp-plus-label">Pluses exclusivos</div>
+          <ul class="comp-plus">
+            <li>Stack Google = $0/mes infra</li>
+            <li>CRM + Penpals AI incluidos</li>
+            <li>Diseño a medida semana 1</li>
+            <li>Opción de intercambio</li>
+            <li>Proveedora con hija en la escuela</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -389,33 +381,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--g2);color:var(--t);font-s
         <span class="comp-arrow">▶ Ver comparativa de mercado</span>
       </button>
       <div class="comp-body" style="display:none">
-        <div class="comp-grid">
-          <div class="comp-col">
-            <div class="comp-flag">🇲🇽 México</div>
-            <div class="comp-brand">ConsultorSEOMexico</div>
-            <div class="comp-precio ellos">$6k–18k MXN/mes</div>
-            <div class="comp-sub">consultorseomexico.com</div>
-            <div class="comp-det">Sin modelo diferido · cobro desde mes 1</div>
-          </div>
-          <div class="comp-col">
-            <div class="comp-flag">🇺🇸 EE.UU.</div>
-            <div class="comp-brand">WebFX.com</div>
-            <div class="comp-precio ellos">$500–5,000 USD/mes</div>
-            <div class="comp-sub">webfx.com/seo/pricing</div>
-            <div class="comp-det">Standard retainer · cobro inmediato</div>
-          </div>
-          <div class="comp-col">
-            <div class="comp-flag">🌿 Yo</div>
-            <div class="comp-brand">Propuesta Liberecco</div>
-            <div class="comp-precio yo">$250 USD/mes</div>
-            <div class="comp-sub">≈ $4,750 MXN/mes</div>
-            <div class="comp-plus-label">Pluses exclusivos</div>
-            <ul class="comp-plus">
-              <li>3 meses gratuitos primero</li>
-              <li>Pagas al mes 4 con evidencia</li>
-              <li>Cancelable con 30 días de aviso</li>
-            </ul>
-          </div>
+        <div class="comp-rivals">
+          <div class="rival-pill">🇲🇽 <strong>ConsultorSEOMexico</strong> — $6k–18k MXN/mes · sin modelo diferido · cobro desde mes 1</div>
+          <div class="rival-pill">🇺🇸 <strong>WebFX.com</strong> — $500–5,000 USD/mes · standard retainer · cobro inmediato</div>
+        </div>
+        <div class="comp-yo">
+          <div class="comp-yo-label">🌿 Propuesta Liberecco</div>
+          <div class="comp-precio yo">$250 USD/mes <span style="font-size:13px;font-weight:400;color:var(--teal);">≈ $4,750 MXN/mes</span></div>
+          <div class="comp-plus-label">Pluses exclusivos</div>
+          <ul class="comp-plus">
+            <li>3 meses gratuitos primero</li>
+            <li>Pagas al mes 4 con evidencia</li>
+            <li>Cancelable con 30 días de aviso</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -430,33 +408,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--g2);color:var(--t);font-s
         <span class="comp-arrow">▶ Ver comparativa de mercado</span>
       </button>
       <div class="comp-body" style="display:none">
-        <div class="comp-grid">
-          <div class="comp-col">
-            <div class="comp-flag">🇲🇽 México</div>
-            <div class="comp-brand">Fencode.dev</div>
-            <div class="comp-precio ellos">$3k–15k MXN/mes</div>
-            <div class="comp-sub">fencode.dev</div>
-            <div class="comp-det">Sin cambios menores incluidos</div>
-          </div>
-          <div class="comp-col">
-            <div class="comp-flag">🇺🇸 EE.UU.</div>
-            <div class="comp-brand">ArcIntermedia</div>
-            <div class="comp-precio ellos">$300–2,000 USD/mes</div>
-            <div class="comp-sub">arcintermedia.com</div>
-            <div class="comp-det">Sin soporte directo incluido</div>
-          </div>
-          <div class="comp-col">
-            <div class="comp-flag">🌿 Yo</div>
-            <div class="comp-brand">Propuesta Liberecco</div>
-            <div class="comp-precio yo">$85 USD/mes</div>
-            <div class="comp-sub">≈ $1,615 MXN/mes</div>
-            <div class="comp-plus-label">Pluses exclusivos</div>
-            <ul class="comp-plus">
-              <li>3 cambios menores incluidos</li>
-              <li>Respaldo + monitoreo activo</li>
-              <li>Soporte directo sin intermediarios</li>
-            </ul>
-          </div>
+        <div class="comp-rivals">
+          <div class="rival-pill">🇲🇽 <strong>Fencode.dev</strong> — $3k–15k MXN/mes · sin cambios menores incluidos</div>
+          <div class="rival-pill">🇺🇸 <strong>ArcIntermedia</strong> — $300–2,000 USD/mes · sin soporte directo incluido</div>
+        </div>
+        <div class="comp-yo">
+          <div class="comp-yo-label">🌿 Propuesta Liberecco</div>
+          <div class="comp-precio yo">$85 USD/mes <span style="font-size:13px;font-weight:400;color:var(--teal);">≈ $1,615 MXN/mes</span></div>
+          <div class="comp-plus-label">Pluses exclusivos</div>
+          <ul class="comp-plus">
+            <li>3 cambios menores incluidos</li>
+            <li>Respaldo + monitoreo activo</li>
+            <li>Soporte directo sin intermediarios</li>
+          </ul>
         </div>
       </div>
     </div>
